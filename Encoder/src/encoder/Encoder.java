@@ -18,4 +18,7 @@ public class Encoder {
         // TODO code application logic here
     }
     
+    public static void encode() {
+    
+}
 }
