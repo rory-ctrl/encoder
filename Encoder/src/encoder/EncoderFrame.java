@@ -117,6 +117,11 @@ public class EncoderFrame extends javax.swing.JFrame {
         });
 
         jButtonEncodeFile.setText("EncodeFile");
+        jButtonEncodeFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEncodeFileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -227,6 +232,20 @@ public class EncoderFrame extends javax.swing.JFrame {
        this.jTextAreaCode.setText(null);
        this.jTextAreaMessage.setText(null);
     }//GEN-LAST:event_jButtonClearActionPerformed
+
+    private void jButtonEncodeFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncodeFileActionPerformed
+        
+        /*
+        This Jbutton code is basic code to see how a File Reader would be contructed.
+        It takes the text of the jTextDataFile and stores it in a string. It then creata a new Encoder object.
+        It then passes the string in the first line of code as a parameter for the encode method of encoder and
+        returns the String representation of boolean. 
+        */
+        String dataFile = this.jTextFieldDataFile.getText();
+        Encoder encode = new Encoder();
+        this.jTextAreaMessage.setText(String.valueOf(encode.encode(dataFile)));
+        
+    }//GEN-LAST:event_jButtonEncodeFileActionPerformed
 
     /**
      * @param args the command line arguments

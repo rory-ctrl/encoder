@@ -200,6 +200,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="EncodeFile"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEncodeFileActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
