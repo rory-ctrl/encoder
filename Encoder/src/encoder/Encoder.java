@@ -5,8 +5,12 @@
  */
 package encoder;
 
-import java.util.*;
 import java.io.*;
+ import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
+
 /**
  *
  * @author Rory Mackin
@@ -20,15 +24,20 @@ public class Encoder {
         // TODO code application logic here
     }
     
-    public boolean encode(String fileName) {
-      /* 
-      This encode method is a method stub to see how a File Reader would be contructed.
-      Typing false text into the file text bar should return false. This means the method
-      is taking a file and seeing if it can be read it. 
-      */
-      File read = new File(fileName);
-      
-        return read.canRead() == true;
-    
-}
+    public String encodeMessage (String fileName) {
+        return "";
+        
+    }
+
+    public String encodeFile(String fileName) throws IOException {
+     /* 
+      This encodeFile method is the first attempt at making a method that reads a file. Checks
+      if that file is in the project, reads it and ouputs it content as the String value of a list
+     */
+        
+        //Path path = FileSystems.getDefault().getPath(fileName);
+        List lines = Files.readAllLines(Paths.get(fileName));
+        return lines.toString();
+
+    }
 }
