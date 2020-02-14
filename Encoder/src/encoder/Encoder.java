@@ -8,7 +8,9 @@ package encoder;
 import java.io.*;
  import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 
 /**
@@ -16,7 +18,12 @@ import java.util.List;
  * @author Rory Mackin
  */
 public class Encoder {
-
+    
+   /* 
+    The queue used for encryption
+    */
+    Queue<Integer> repeatingKey = new LinkedList<>();
+    int[] initialKey = {17, 98, 15, 9, 300};
     /**
      * @param args the command line arguments
      */
@@ -25,19 +32,45 @@ public class Encoder {
     }
     
     public String encodeMessage (String fileName) {
-        return "";
+        /*
+        This method is the overall method used for encryption.
+        */
+        for (int keyVal : initialKey) {
+            repeatingKey.offer(keyVal);
+        }
+        String encode = fileName;
+        StringBuilder sb = new StringBuilder();
+
+        for (int ci = 0; ci < encode.length(); ci++) {
+            int shift = repeatingKey.poll();
+
+            // shift character by shift
+            char toShift = encode.charAt(ci);
+            int shifted = toShift + shift;
+            char shiftedChar = (char) shifted; // cast back to char
+            sb.append(shiftedChar);
+
+            // added shift back into the queue
+            repeatingKey.offer(shift);
+            //System.out.println("key: " + repeatingKey);
+        }
+
+        String encoded = sb.toString();
+        return encoded;
         
     }
 
     public String encodeFile(String fileName) throws IOException {
      /* 
-      This encodeFile method is the first attempt at making a method that reads a file. Checks
-      if that file is in the project, reads it and ouputs it content as the String value of a list
+      This encodeFile method is the first attempt at making a method that reads a file and encodes it's contents.
      */
         
         //Path path = FileSystems.getDefault().getPath(fileName);
         List lines = Files.readAllLines(Paths.get(fileName));
-        return lines.toString();
+        String encodedFile = lines.toString();
+        String encodedMessage2 = encodeMessage(encodedFile);
+       
+        return encodedMessage2;
 
     }
 }
