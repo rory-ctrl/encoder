@@ -5,6 +5,8 @@
  */
 package encoder;
 
+import java.util.*;
+import java.io.*;
 /**
  *
  * @author Rory Mackin
@@ -18,7 +20,15 @@ public class Encoder {
         // TODO code application logic here
     }
     
-    public static void encode() {
+    public boolean encode(String fileName) {
+      /* 
+      This encode method is a method stub to see how a File Reader would be contructed.
+      Typing false text into the file text bar should return false. This means the method
+      is taking a file and seeing if it can be read it. 
+      */
+      File read = new File(fileName);
+      
+        return read.canRead() == true;
     
 }
 }
