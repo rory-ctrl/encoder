@@ -5,6 +5,7 @@
  */
 package encoder;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -243,7 +244,8 @@ public class EncoderFrame extends javax.swing.JFrame {
         */
         String dataFile = this.jTextFieldDataFile.getText();
         Encoder encode = new Encoder();
-        this.jTextAreaMessage.setText(String.valueOf(encode.encode(dataFile)));
+        
+        this.jTextAreaMessage.setText(String.valueOf(encode.encode("data" + File.separator + dataFile)));
         
     }//GEN-LAST:event_jButtonEncodeFileActionPerformed
 
