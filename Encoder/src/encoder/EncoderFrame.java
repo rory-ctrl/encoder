@@ -6,8 +6,11 @@
 package encoder;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -244,8 +247,11 @@ public class EncoderFrame extends javax.swing.JFrame {
         */
         String dataFile = this.jTextFieldDataFile.getText();
         Encoder encode = new Encoder();
-        
-        this.jTextAreaMessage.setText(String.valueOf(encode.encode("data" + File.separator + dataFile)));
+        try {
+            this.jTextAreaMessage.setText(encode.encodeFile("data" + File.separator + dataFile));
+        } catch (IOException ex) {
+            Logger.getLogger(EncoderFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButtonEncodeFileActionPerformed
 
