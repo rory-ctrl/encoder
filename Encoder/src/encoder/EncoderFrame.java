@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class EncoderFrame extends javax.swing.JFrame {
 
     Queue<Integer> repeatingKey = new LinkedList<>();
-    int[] initialKey = {17, 98, 15, 9, 300};
+    int[] initialKey = {2, 2, 2, 2, 2};
 
     /**
      * Creates new form EncoderFrame
@@ -49,6 +49,7 @@ public class EncoderFrame extends javax.swing.JFrame {
         jButtonClear = new javax.swing.JButton();
         jTextFieldDataFile = new javax.swing.JTextField();
         jButtonEncodeFile = new javax.swing.JButton();
+        jButtonDecodeFile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 204));
@@ -127,6 +128,13 @@ public class EncoderFrame extends javax.swing.JFrame {
             }
         });
 
+        jButtonDecodeFile.setText("DecodeFile");
+        jButtonDecodeFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDecodeFileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,18 +154,21 @@ public class EncoderFrame extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextFieldDataFile, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldDataFile, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonEncodeFile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonEncodeFile)))
-                .addGap(71, 71, 71))
+                        .addComponent(jButtonDecodeFile)))
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldDataFile)
-                    .addComponent(jButtonEncodeFile, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDataFile, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEncodeFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonDecodeFile))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -252,8 +263,20 @@ public class EncoderFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(EncoderFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        repeatingKey.clear();
     }//GEN-LAST:event_jButtonEncodeFileActionPerformed
+
+    private void jButtonDecodeFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDecodeFileActionPerformed
+       
+        String dataFile = this.jTextFieldDataFile.getText();
+        Encoder encode = new Encoder();
+        try {
+            this.jTextAreaMessage.setText(encode.decodeFile("data" + File.separator + dataFile));
+        } catch (IOException ex) {
+            Logger.getLogger(EncoderFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        repeatingKey.clear();
+    }//GEN-LAST:event_jButtonDecodeFileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,6 +316,7 @@ public class EncoderFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonDecode;
+    private javax.swing.JButton jButtonDecodeFile;
     private javax.swing.JButton jButtonEncodeFile;
     private javax.swing.JButton jButtonEndcode;
     private javax.swing.JPanel jPanel1;
