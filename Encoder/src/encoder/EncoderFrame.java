@@ -259,7 +259,7 @@ public class EncoderFrame extends javax.swing.JFrame {
         String dataFile = this.jTextFieldDataFile.getText();
         Encoder encode = new Encoder();
         try {
-            this.jTextAreaMessage.setText(encode.encodeFile("data" + File.separator + dataFile));
+            encode.encodeFile("data" + File.separator + dataFile);
         } catch (IOException ex) {
             Logger.getLogger(EncoderFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -271,7 +271,7 @@ public class EncoderFrame extends javax.swing.JFrame {
         String dataFile = this.jTextFieldDataFile.getText();
         Encoder encode = new Encoder();
         try {
-            this.jTextAreaMessage.setText(encode.decodeFile("data" + File.separator + dataFile));
+            encode.decodeFile("data" + File.separator + dataFile);
         } catch (IOException ex) {
             Logger.getLogger(EncoderFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
